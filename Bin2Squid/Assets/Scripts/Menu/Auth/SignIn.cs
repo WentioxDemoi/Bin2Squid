@@ -2,6 +2,7 @@ using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class SignIn : MonoBehaviour
 {
@@ -27,6 +28,23 @@ public class SignIn : MonoBehaviour
             Debug.Log("SignIn success");
             MenuPanel_.SetActive(false);
             RoomPanel_.SetActive(true);
+
+            //A supprimer lorsque le serveur sera prêt
+            var updateUserDataRequest = new UpdateUserDataRequest
+            {
+                Data = new Dictionary<string, string>
+                {
+                    { "Money", "10" }
+                }
+            };
+
+            PlayFabClientAPI.UpdateUserData(updateUserDataRequest, updateResult =>
+            {
+                Debug.Log("Money updated successfully.");
+            }, updateError =>
+            {
+                Debug.Log("Error updating Money: " + updateError.ErrorMessage);
+            });
         }, error =>
         {
             Debug.Log("Error while SignIn : " + error.ErrorMessage);
