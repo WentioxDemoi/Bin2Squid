@@ -59,12 +59,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/ConnectAndJoinRandomLb.cs" />
-    <Compile Include="Assets/Scripts/Menu/Auth/LogIn.cs" />
-    <Compile Include="Assets/Scripts/Menu/Auth/SignIn.cs" />
-    <Compile Include="Assets/Scripts/Menu/Room/PhotonManager.cs" />
-    <Compile Include="Assets/Scripts/Menu/Room/PlayfabManager.cs" />
+    <Compile Include="Assets/Scripts/Menu/Room/RoomCreation/RoomCreationManager.cs" />
     <Compile Include="Assets/Scripts/Menu/Room/Profile/ProfileManager.cs" />
-    <Compile Include="Assets/Scripts/Menu/Room/RoomCreation/RoomManager.cs" />
+    <Compile Include="Assets/Scripts/Menu/Auth/SignIn.cs" />
+    <Compile Include="Assets/Scripts/Menu/Auth/LogIn.cs" />
+    <Compile Include="Assets/Scripts/Menu/Room/RoomDisplay/RoomDisplayManager.cs" />
+    <Compile Include="Assets/Scripts/Menu/Room/PhotonManager.cs" />
+    <Compile Include="Assets/Scripts/Menu/Room/RoomDisplay/RoomItem.cs" />
+    <Compile Include="Assets/Scripts/Menu/Room/PlayfabManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
