@@ -3,12 +3,14 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - LogIn
     - PhotonManager
+    - PlayerItem
     - PlayfabManager
     - ProfileManager
     - RoomCreationManager
     - RoomDisplayManager
     - RoomItem
     - SignIn
+    - WaitingRoomManager
     PhotonUnityNetworking.Demos.dll:
     - Photon.Pun.Demo.Asteroids.Asteroid
     - Photon.Pun.Demo.Asteroids.Bullet
@@ -124,6 +126,9 @@ ScriptsOnlyBuild:
     fullTypeName: RoomCreationManager
     methodName: CreateRoom
   - assembly: Assembly-CSharp
+    fullTypeName: WaitingRoomManager
+    methodName: StartGame
+  - assembly: Assembly-CSharp
     fullTypeName: SignIn
     methodName: SignIn_
   - assembly: Assembly-CSharp
@@ -160,6 +165,57 @@ ScriptsOnlyBuild:
     fullTypeName: RoomItem
     methodName: OnClickRoomItem
   sceneClasses:
+    Assets/Scenes/InGame.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1618}
+    - Class: 114
+      Script: {instanceID: 2718}
+    - Class: 114
+      Script: {instanceID: 2936}
+    - Class: 114
+      Script: {instanceID: 5352}
+    - Class: 114
+      Script: {instanceID: 5948}
+    - Class: 114
+      Script: {instanceID: 6104}
+    - Class: 114
+      Script: {instanceID: 6444}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/Menu.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -281,6 +337,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 8066}
     - Class: 114
       Script: {instanceID: 8372}
+    - Class: 114
+      Script: {instanceID: 45990}
+    - Class: 114
+      Script: {instanceID: 46032}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1962,7 +2022,20 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: fdcaa41a6e2a9fdc266d234d24afde97
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WaitingRoomManager
+  - hash:
+      serializedVersion: 2
+      Hash: bcd2b5ecc7c8d87515350c4457b1f4ea
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerItem
   platform: 2
   scenePathNames:
   - Assets/Scenes/Menu.unity
+  - Assets/Scenes/InGame.unity
   playerPath: /Users/mimilazone/Documents/Perso/Bin2Squid/Bin2Squid/Bin2Squid.app

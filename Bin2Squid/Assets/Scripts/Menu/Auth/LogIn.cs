@@ -3,6 +3,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Photon.Pun;
 
 public class LogIn : MonoBehaviour
 {
@@ -26,6 +27,15 @@ public class LogIn : MonoBehaviour
             MenuPanel_.SetActive(false);
             RoomPanel_.SetActive(true);
 
+            PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest(), accountInfoResult =>
+            {
+                var playerName = accountInfoResult.AccountInfo.Username;
+                PhotonNetwork.NickName = playerName;
+                Debug.Log("Player nickname set to: " + PhotonNetwork.NickName);
+            }, accountInfoError =>
+            {
+                Debug.Log("Error retrieving account info: " + accountInfoError.ErrorMessage);
+            });
             //A supprimer lorsque le serveur sera prêt
             var updateUserDataRequest = new UpdateUserDataRequest
             {

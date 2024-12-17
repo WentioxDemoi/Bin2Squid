@@ -318,12 +318,14 @@
 "Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/ConnectAndJoinRandomLb.cs"
 "Assets/Scripts/Menu/Auth/LogIn.cs"
 "Assets/Scripts/Menu/Auth/SignIn.cs"
-"Assets/Scripts/Menu/Room/PhotonManager.cs"
-"Assets/Scripts/Menu/Room/PlayfabManager.cs"
+"Assets/Scripts/Menu/PhotonManager.cs"
+"Assets/Scripts/Menu/PlayfabManager.cs"
 "Assets/Scripts/Menu/Room/Profile/ProfileManager.cs"
 "Assets/Scripts/Menu/Room/RoomCreation/RoomCreationManager.cs"
 "Assets/Scripts/Menu/Room/RoomDisplay/RoomDisplayManager.cs"
 "Assets/Scripts/Menu/Room/RoomDisplay/RoomItem.cs"
+"Assets/Scripts/Menu/WaitingRoom/PlayerItem.cs"
+"Assets/Scripts/Menu/WaitingRoom/WaitingRoomManager.cs"
 -langversion:9.0
 
 /deterministic

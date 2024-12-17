@@ -64,9 +64,11 @@
     <Compile Include="Assets/Scripts/Menu/Auth/SignIn.cs" />
     <Compile Include="Assets/Scripts/Menu/Auth/LogIn.cs" />
     <Compile Include="Assets/Scripts/Menu/Room/RoomDisplay/RoomDisplayManager.cs" />
-    <Compile Include="Assets/Scripts/Menu/Room/PhotonManager.cs" />
+    <Compile Include="Assets/Scripts/Menu/PhotonManager.cs" />
     <Compile Include="Assets/Scripts/Menu/Room/RoomDisplay/RoomItem.cs" />
-    <Compile Include="Assets/Scripts/Menu/Room/PlayfabManager.cs" />
+    <Compile Include="Assets/Scripts/Menu/PlayfabManager.cs" />
+    <Compile Include="Assets/Scripts/Menu/WaitingRoom/WaitingRoomManager.cs" />
+    <Compile Include="Assets/Scripts/Menu/WaitingRoom/PlayerItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
