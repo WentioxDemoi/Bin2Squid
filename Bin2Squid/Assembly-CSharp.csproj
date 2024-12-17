@@ -60,14 +60,17 @@
   <ItemGroup>
     <Compile Include="Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets/Scripts/Menu/Room/RoomCreation/RoomCreationManager.cs" />
+    <Compile Include="Assets/Scripts/InGame/Blocs/BlocItem.cs" />
+    <Compile Include="Assets/Scripts/Menu/WaitingRoom/WaitingRoomManager.cs" />
     <Compile Include="Assets/Scripts/Menu/Room/Profile/ProfileManager.cs" />
+    <Compile Include="Assets/Scripts/InGame/Blocs/BlocsManager.cs" />
+    <Compile Include="Assets/Scripts/InGame/InGameManager.cs" />
     <Compile Include="Assets/Scripts/Menu/Auth/SignIn.cs" />
     <Compile Include="Assets/Scripts/Menu/Auth/LogIn.cs" />
     <Compile Include="Assets/Scripts/Menu/Room/RoomDisplay/RoomDisplayManager.cs" />
     <Compile Include="Assets/Scripts/Menu/PhotonManager.cs" />
     <Compile Include="Assets/Scripts/Menu/Room/RoomDisplay/RoomItem.cs" />
     <Compile Include="Assets/Scripts/Menu/PlayfabManager.cs" />
-    <Compile Include="Assets/Scripts/Menu/WaitingRoom/WaitingRoomManager.cs" />
     <Compile Include="Assets/Scripts/Menu/WaitingRoom/PlayerItem.cs" />
   </ItemGroup>
   <ItemGroup>

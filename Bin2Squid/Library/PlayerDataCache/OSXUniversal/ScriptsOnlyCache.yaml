@@ -1,6 +1,9 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BlocItem
+    - BlocsManager
+    - InGameManager
     - LogIn
     - PhotonManager
     - PlayerItem
@@ -174,32 +177,40 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
     - Class: 48
+      Script: {instanceID: 0}
+    - Class: 65
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 89
+      Script: {instanceID: 0}
+    - Class: 102
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1618}
-    - Class: 114
       Script: {instanceID: 2718}
     - Class: 114
-      Script: {instanceID: 2936}
-    - Class: 114
-      Script: {instanceID: 5352}
-    - Class: 114
-      Script: {instanceID: 5948}
-    - Class: 114
-      Script: {instanceID: 6104}
+      Script: {instanceID: 3152}
     - Class: 114
       Script: {instanceID: 6444}
+    - Class: 114
+      Script: {instanceID: 58068}
+    - Class: 114
+      Script: {instanceID: 58078}
+    - Class: 114
+      Script: {instanceID: 58086}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -208,11 +219,7 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
     - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
@@ -252,6 +259,8 @@ ScriptsOnlyBuild:
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
+      Script: {instanceID: 0}
+    - Class: 102
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -341,6 +350,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 45990}
     - Class: 114
       Script: {instanceID: 46032}
+    - Class: 114
+      Script: {instanceID: 58078}
+    - Class: 114
+      Script: {instanceID: 58086}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2034,6 +2047,24 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerItem
+  - hash:
+      serializedVersion: 2
+      Hash: 2604d24425a812075dd40bbeb1077a4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InGameManager
+  - hash:
+      serializedVersion: 2
+      Hash: 7249fd2abaf632747809d8a950bed859
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BlocsManager
+  - hash:
+      serializedVersion: 2
+      Hash: 2aba2b59052bc6f30a9857e582ae6fc8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BlocItem
   platform: 2
   scenePathNames:
   - Assets/Scenes/Menu.unity

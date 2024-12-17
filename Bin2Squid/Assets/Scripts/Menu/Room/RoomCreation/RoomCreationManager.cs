@@ -14,7 +14,7 @@ public class RoomCreationManager : MonoBehaviour
 
     private void Start()
     {
-        RoomNumberOfPlayers_.text = "2";
+        RoomNumberOfPlayers_.text = "1";
         RoomAmountofMoney_.text = "1";
         PublicButton_.transform.localScale *= 1.2f;
 
@@ -44,9 +44,9 @@ public class RoomCreationManager : MonoBehaviour
             {
                 RoomNumberOfPlayers_.text = "50";
             }
-            else if (numberOfPlayers < 2)
+            else if (numberOfPlayers < 1)
             {
-                RoomNumberOfPlayers_.text = "2";
+                RoomNumberOfPlayers_.text = "1";
             }
         }
     }
@@ -89,7 +89,7 @@ public class RoomCreationManager : MonoBehaviour
 
     public void CreateRoom()
     {
-        if (int.TryParse(RoomNumberOfPlayers_.text, out int numberOfPlayers) && numberOfPlayers >= 2 &&
+        if (int.TryParse(RoomNumberOfPlayers_.text, out int numberOfPlayers) && numberOfPlayers >= 1 &&
             int.TryParse(RoomAmountofMoney_.text, out int amountOfMoney) && amountOfMoney > 0 &&
             !string.IsNullOrEmpty(RoomName_.text))
         {
