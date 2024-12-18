@@ -6,6 +6,8 @@ public class InGameManager : MonoBehaviourPun
 {
     public GameObject blocsManagerPrefab;
     public Camera mainCamera;
+    public GameObject hudManager;
+    private GameObject FirstBloc;
 
     int i = 0;
 
@@ -28,11 +30,54 @@ public class InGameManager : MonoBehaviourPun
         StartCoroutine(ManageBlocs());
     }
 
+    private void Update() {
+        if (FirstBloc.GetComponent<BlocsManager>().isSelected) {
+            hudManager.GetComponent<HudManager>().StopHintAnimation();
+            hudManager.GetComponent<HudManager>().SetHint("Nice Choice !");
+        }
+        else {
+            hudManager.GetComponent<HudManager>().AnimateHintText();
+            hudManager.GetComponent<HudManager>().SetHint("Click on a tile to select it !");
+        }
+    }
+
+    private void BreakBloc() {
+        bool randomBool = Random.value > 0.5f;
+        if (randomBool) {
+            photonView.RPC("BreakBlocRPC", RpcTarget.All, 0);
+        } else {
+            photonView.RPC("BreakBlocRPC", RpcTarget.All, 1);
+        }
+    }
+
+    [PunRPC]
+    public void BreakBlocRPC(int side) {
+        if (side == 0) {
+            FirstBloc.GetComponent<BlocsManager>().BlocLeftItem_.SetColor(Color.black);
+        } else {
+            FirstBloc.GetComponent<BlocsManager>().BlocRightItem_.SetColor(Color.black);
+        }
+    }
+
     IEnumerator ManageBlocs()
     {
+        bool trigger = false;
         while (true)
         {
-            yield return new WaitForSeconds(20f);
+            for (int i = 20; i > 0; i--) {
+                yield return new WaitForSeconds(1f);
+                if (PhotonNetwork.IsMasterClient)
+                    photonView.RPC("UpdateTimeLeftRPC", RpcTarget.All, i);
+                if (FirstBloc.GetComponent<BlocsManager>().IsFull() && !trigger) {
+                    i = 5;
+                    trigger = true;
+                }
+            }
+            if (PhotonNetwork.IsMasterClient) {
+            BreakBloc();
+            }
+            yield return new WaitForSeconds(5f);
+
             if (PhotonNetwork.IsMasterClient)
             {
                 GameObject[] blocs = GameObject.FindGameObjectsWithTag("BlocManager");
@@ -78,10 +123,10 @@ public class InGameManager : MonoBehaviourPun
     [PunRPC]
     private void SetBlocAsFirstRPC(int blocViewID)
     {
-        GameObject bloc = PhotonView.Find(blocViewID).gameObject;
-        if (bloc != null)
+        FirstBloc = PhotonView.Find(blocViewID).gameObject;
+        if (FirstBloc != null)
         {
-            bloc.GetComponent<BlocsManager>().isFirst = true;
+            FirstBloc.GetComponent<BlocsManager>().isFirst = true;
         }
     }
 
@@ -105,5 +150,11 @@ public class InGameManager : MonoBehaviourPun
             yield return null;
         }
         mainCamera.transform.position = endPosition;
+    }
+
+    [PunRPC]
+    private void UpdateTimeLeftRPC(int timeLeft)
+    {
+        hudManager.GetComponent<HudManager>().UpdateTimeLeft(timeLeft);
     }
 }

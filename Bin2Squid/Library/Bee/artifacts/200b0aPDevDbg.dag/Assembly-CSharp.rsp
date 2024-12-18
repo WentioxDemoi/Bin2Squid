@@ -318,6 +318,7 @@
 "Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/ConnectAndJoinRandomLb.cs"
 "Assets/Scripts/InGame/Blocs/BlocItem.cs"
 "Assets/Scripts/InGame/Blocs/BlocsManager.cs"
+"Assets/Scripts/InGame/Hud/HudManager.cs"
 "Assets/Scripts/InGame/InGameManager.cs"
 "Assets/Scripts/Menu/Auth/LogIn.cs"
 "Assets/Scripts/Menu/Auth/SignIn.cs"

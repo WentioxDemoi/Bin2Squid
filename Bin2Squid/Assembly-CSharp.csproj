@@ -71,6 +71,7 @@
     <Compile Include="Assets/Scripts/Menu/PhotonManager.cs" />
     <Compile Include="Assets/Scripts/Menu/Room/RoomDisplay/RoomItem.cs" />
     <Compile Include="Assets/Scripts/Menu/PlayfabManager.cs" />
+    <Compile Include="Assets/Scripts/InGame/Hud/HudManager.cs" />
     <Compile Include="Assets/Scripts/Menu/WaitingRoom/PlayerItem.cs" />
   </ItemGroup>
   <ItemGroup>

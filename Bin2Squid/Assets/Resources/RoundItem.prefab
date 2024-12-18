@@ -50,6 +50,7 @@ MonoBehaviour:
   BlocLeftItem_: {fileID: 8100772985107095237}
   BlocRightItem_: {fileID: 6163377516230837041}
   isFirst: 0
+  isSelected: 0
 --- !u!114 &-5181779933178039497
 MonoBehaviour:
   m_ObjectHideFlags: 0

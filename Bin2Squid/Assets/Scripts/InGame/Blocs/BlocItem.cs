@@ -10,6 +10,13 @@ public class BlocItem : MonoBehaviourPun
     private static BlocItem currentlySelectedBloc = null;
     public int playerCount = 0;
 
+    private void Start() {
+    }
+
+    public void StartCapacityText() {
+        CapacityText.text = 0 + "/" + PhotonNetwork.PlayerList.Length;
+    }
+
     public void SetColor(Color newColor) 
     {
         gameObject.GetComponent<Renderer>().material.color = newColor;
@@ -32,7 +39,6 @@ public class BlocItem : MonoBehaviourPun
             currentlySelectedBloc = this;
             transform.localScale += new Vector3(0, 0.1f, 0);
 
-            // Determine the second argument based on the GameObject's name
             string position = gameObject.name == "PlatformItemRight" ? "right" : "left";
             photonView.RPC("UpdateCapacityText", RpcTarget.All, 1, position);
         }
@@ -41,7 +47,6 @@ public class BlocItem : MonoBehaviourPun
             currentlySelectedBloc = null;
             transform.localScale -= new Vector3(0, 0.1f, 0);
 
-            // Determine the second argument based on the GameObject's name
             string position = gameObject.name == "PlatformItemRight" ? "right" : "left";
             photonView.RPC("UpdateCapacityText", RpcTarget.All, -1, position);
         }
@@ -51,24 +56,20 @@ public class BlocItem : MonoBehaviourPun
     private void UpdateCapacityText(int change, string position)
     {
         string side = gameObject.name == "PlatformItemRight" ? "right" : "left";
-        // Additional logic based on whether the item is right or left
-        if (position == side)
-        {
+        if (position == side) {
             playerCount += change;
-            CapacityText.text = playerCount.ToString();
+            CapacityText.text = playerCount.ToString() + "/" + PhotonNetwork.PlayerList.Length;
         }
-        else
-        {
-            // Logic for left platform
-        }
+    }
+
+    public int IsFull() {
+        return playerCount;
     }
 
     private void Deselect()
     {
         selected = false;
         transform.localScale -= new Vector3(0, 0.1f, 0);
-
-        // Décrémenter le playerCount lors de la désélection
         string position = gameObject.name == "PlatformItemRight" ? "right" : "left";
         photonView.RPC("UpdateCapacityText", RpcTarget.All, -1, position);
     }

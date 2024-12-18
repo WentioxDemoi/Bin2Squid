@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2162590342181875810
 RectTransform:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2661394443277280913}
-  m_Text: 50/50
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -223,6 +223,7 @@ MonoBehaviour:
   selected: 0
   isClickable: 0
   CapacityText: {fileID: 6701345063846276553}
+  playerCount: 0
 --- !u!222 &5031724335163183082
 CanvasRenderer:
   m_ObjectHideFlags: 0
