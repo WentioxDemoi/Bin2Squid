@@ -11,13 +11,39 @@ public class LogIn : MonoBehaviour
 
     public GameObject MenuPanel_, RoomPanel_;
 
+    void Start() {
+        if (PlayFabClientAPI.IsClientLoggedIn() && PhotonNetwork.IsConnected) { 
+            if (PhotonNetwork.InRoom) {
+                PhotonNetwork.LeaveRoom();
+            }
+            MenuPanel_.SetActive(false);
+            RoomPanel_.SetActive(true);
+        }
+        if (PhotonNetwork.InLobby) {
+            Debug.Log("Vous êtes dans un lobby.");
+        } else {
+            Debug.Log("Vous n'êtes pas dans un lobby.");
+            PhotonNetwork.JoinLobby();
+        }       
+    }
+
     public void LogIn_()
     {
-        var request = new LoginWithEmailAddressRequest
-        {
-            Email = "okay@gmail.com",//Email_.text,
-            Password = "okay999"//Password_.text
-        };
+        LoginWithEmailAddressRequest request = null;
+        if (Email_.text == " " || Password_.text == "") {
+            request = new LoginWithEmailAddressRequest
+            {
+                Email = "okay@gmail.com",//Email_.text,
+                Password = "okay999"//Password_.text
+            };
+        }
+        else {
+            request = new LoginWithEmailAddressRequest
+            {
+                Email = Email_.text,
+                Password = Password_.text
+            };
+        }
         Email_.text = "";
         Password_.text = "";
 
@@ -35,22 +61,6 @@ public class LogIn : MonoBehaviour
             }, accountInfoError =>
             {
                 Debug.Log("Error retrieving account info: " + accountInfoError.ErrorMessage);
-            });
-            //A supprimer lorsque le serveur sera prêt
-            var updateUserDataRequest = new UpdateUserDataRequest
-            {
-                Data = new Dictionary<string, string>
-                {
-                    { "Money", "10" }
-                }
-            };
-
-            PlayFabClientAPI.UpdateUserData(updateUserDataRequest, updateResult =>
-            {
-                Debug.Log("Money updated successfully.");
-            }, updateError =>
-            {
-                Debug.Log("Error updating Money: " + updateError.ErrorMessage);
             });
         }, error =>
         {

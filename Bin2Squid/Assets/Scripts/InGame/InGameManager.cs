@@ -7,6 +7,7 @@ public class InGameManager : MonoBehaviourPun
     public GameObject blocsManagerPrefab;
     public Camera mainCamera;
     public GameObject hudManager;
+    public GameObject winLoseCondition;
     private GameObject FirstBloc;
 
     int i = 0;
@@ -39,6 +40,9 @@ public class InGameManager : MonoBehaviourPun
             hudManager.GetComponent<HudManager>().AnimateHintText();
             hudManager.GetComponent<HudManager>().SetHint("Click on a tile to select it !");
         }
+        if (PhotonNetwork.PlayerList.Length == 1) {
+            StartCoroutine(WaitAndWin());
+        }
     }
 
     private void BreakBloc() {
@@ -54,16 +58,40 @@ public class InGameManager : MonoBehaviourPun
     public void BreakBlocRPC(int side) {
         if (side == 0) {
             FirstBloc.GetComponent<BlocsManager>().BlocLeftItem_.SetColor(Color.black);
+            if (FirstBloc.GetComponent<BlocsManager>().BlocLeftItem_.selected) {
+                if (FirstBloc.GetComponent<BlocsManager>().BlocRightItem_.playerCount == 0) {
+                    StartCoroutine(WaitAndWin());
+                } else {
+                    StartCoroutine(WaitAndLose());
+                }
+            }
         } else {
             FirstBloc.GetComponent<BlocsManager>().BlocRightItem_.SetColor(Color.black);
+            if (FirstBloc.GetComponent<BlocsManager>().BlocRightItem_.selected) {
+                if (FirstBloc.GetComponent<BlocsManager>().BlocLeftItem_.playerCount == 0) {
+                    StartCoroutine(WaitAndWin());
+                } else {
+                    StartCoroutine(WaitAndLose());
+                }
+            }
         }
+    }
+
+    private IEnumerator WaitAndWin() {
+        yield return new WaitForSeconds(3f);
+        winLoseCondition.GetComponent<WinLoseCondition>().Win();
+    }
+    private IEnumerator WaitAndLose() {
+        yield return new WaitForSeconds(3f);
+        winLoseCondition.GetComponent<WinLoseCondition>().Lose();
     }
 
     IEnumerator ManageBlocs()
     {
-        bool trigger = false;
+        bool trigger;
         while (true)
         {
+            trigger = false;
             for (int i = 20; i > 0; i--) {
                 yield return new WaitForSeconds(1f);
                 if (PhotonNetwork.IsMasterClient)
@@ -73,7 +101,9 @@ public class InGameManager : MonoBehaviourPun
                     trigger = true;
                 }
             }
+            photonView.RPC("BlockClickRPC", RpcTarget.All);
             if (PhotonNetwork.IsMasterClient) {
+                yield return new WaitForSeconds(1f);
             BreakBloc();
             }
             yield return new WaitForSeconds(5f);
@@ -118,6 +148,11 @@ public class InGameManager : MonoBehaviourPun
                 photonView.RPC("MoveCameraRPC", RpcTarget.All);
             }
         }
+    }
+
+    [PunRPC]
+    private void BlockClickRPC() {
+        FirstBloc.GetComponent<BlocsManager>().isClickable = false;
     }
 
     [PunRPC]

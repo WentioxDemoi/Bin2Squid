@@ -21,7 +21,6 @@ public class HudManager : MonoBehaviourPunCallbacks
     {
         UpdatePlayerCountText();
     }
-
     public void UpdateTimeLeft(int timeLeft) {
         TimeLeft.text = timeLeft.ToString() + "s";
     }

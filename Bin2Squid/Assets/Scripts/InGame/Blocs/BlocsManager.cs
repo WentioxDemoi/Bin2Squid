@@ -11,6 +11,8 @@ public class BlocsManager : MonoBehaviour
     public bool isSelected = false;
     private bool hasInitialized = false;
 
+    public bool isClickable;
+
     private void Start()
     {
         Color leftColor = GetRandomColor();
@@ -28,6 +30,7 @@ public class BlocsManager : MonoBehaviour
     {
         if (isFirst && !hasInitialized)
         {
+            isClickable = true;
             BlocLeftItem_.isClickable = true;
             BlocRightItem_.isClickable = true;
             BlocLeftItem_.CapacityText.gameObject.SetActive(true);
@@ -37,10 +40,11 @@ public class BlocsManager : MonoBehaviour
             hasInitialized = true;
         }
 
-        if (BlocLeftItem_.selected || BlocRightItem_.selected)
-            isSelected = true;
-        else
-            isSelected = false;
+        if (!isClickable) {
+            BlocLeftItem_.isClickable = false;
+            BlocRightItem_.isClickable = false;
+        }
+            
 
         if (BlocLeftItem_.selected)
             BlocRightItem_.selected = false;

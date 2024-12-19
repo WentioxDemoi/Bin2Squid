@@ -44,7 +44,7 @@ public class SignIn : MonoBehaviour
             {
                 Data = new Dictionary<string, string>
                 {
-                    { "Money", "10" }
+                    { "Money", "100" }
                 }
             };
 

@@ -22,36 +22,32 @@ public class RoomDisplayManager : MonoBehaviourPunCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> RoomList)
     {
-        if (Time.time >= NextUpdateTime_)
+        // Assurez-vous que la liste est mise à jour immédiatement
+        foreach (RoomItem item in RoomItemList_)
         {
-            foreach (RoomItem item in RoomItemList_)
+            Destroy(item.gameObject);
+        }
+        RoomItemList_.Clear();
+        foreach (RoomInfo room in RoomList)
             {
-                Destroy(item.gameObject);
-            }
-            RoomItemList_.Clear();
+            if (!room.RemovedFromList)
+            {
+                RoomItem newroom = Instantiate(roomItem, ContentObject_);
+                newroom.SetRoomName(room.Name);
+                newroom.SetRoomCapacity($"{room.PlayerCount}/{room.MaxPlayers}");
 
-            foreach (RoomInfo room in RoomList)
-            {
-                if (!room.RemovedFromList)
+                if (room.CustomProperties.TryGetValue("IsRoomPublic", out object isRoomPublic))
                 {
-                    RoomItem newroom = Instantiate(roomItem, ContentObject_);
-                    newroom.SetRoomName(room.Name);
-                    newroom.SetRoomCapacity($"{room.PlayerCount}/{room.MaxPlayers}");
-
-                    if (room.CustomProperties.TryGetValue("IsRoomPublic", out object isRoomPublic))
-                    {
-                        bool isPublic = (bool)isRoomPublic;
-                        newroom.SetRoomLockState(isPublic);
-                    }
-                    if (room.CustomProperties.TryGetValue("RoomAmountofMoney", out object roomAmountofMoney))
-                    {
-                        newroom.SetRoomCost(roomAmountofMoney.ToString() + "$");
-                    }
-
-                    RoomItemList_.Add(newroom);
+                    bool isPublic = (bool)isRoomPublic;
+                    newroom.SetRoomLockState(isPublic);
                 }
+                if (room.CustomProperties.TryGetValue("RoomAmountofMoney", out object roomAmountofMoney))
+                {
+                    newroom.SetRoomCost(roomAmountofMoney.ToString() + "$");
+                }
+
+                RoomItemList_.Add(newroom);
             }
-            NextUpdateTime_ = Time.time + TimeUpdate_;
         }
         Debug.Log("Room List Update");
     }

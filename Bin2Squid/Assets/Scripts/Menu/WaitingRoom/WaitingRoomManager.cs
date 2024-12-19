@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
+using PlayFab;
+using PlayFab.ClientModels;
 
 public class WaitingRoomManager : MonoBehaviour
 {
@@ -19,13 +21,12 @@ public class WaitingRoomManager : MonoBehaviour
     float NextUpdateTime_;
 
 
-    private void Start()
+    private void OnEnable()
     {
         GetRoomName();
         GetRoomCapacity();
         GetRoomCost();
         AddPlayerList();
-
     }
 
     private void GetRoomName()
@@ -118,6 +119,7 @@ public class WaitingRoomManager : MonoBehaviour
 
     public void StartGame()
     {
+        photonView.RPC("UpdateMoney", RpcTarget.All);
         ExitGames.Client.Photon.Hashtable roomState = new ExitGames.Client.Photon.Hashtable() { { "GameState", "in game" } };
         PhotonNetwork.CurrentRoom.SetCustomProperties(roomState);
         photonView.RPC("RPC_StartGame", RpcTarget.All);
@@ -127,5 +129,46 @@ public class WaitingRoomManager : MonoBehaviour
     private void RPC_StartGame()
     {
         PhotonNetwork.LoadLevel("InGame");
+    }
+
+    [PunRPC]
+    private void UpdateMoney() {
+        // Check if the custom property exists and is a string
+        if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue("RoomAmountofMoney", out object roomCostObj) && roomCostObj is string roomCostStr) {
+            if (int.TryParse(roomCostStr, out int roomCost)) {
+                // Fetch the current money from PlayFab
+                PlayFabClientAPI.GetUserData(new GetUserDataRequest(), result => {
+                    if (result.Data != null && result.Data.ContainsKey("Money")) {
+                        int currentMoney = int.Parse(result.Data["Money"].Value);
+
+                        // Subtract the room cost
+                        int newMoney = currentMoney - roomCost;
+
+                        // Update the money on PlayFab
+                        var updateUserDataRequest = new UpdateUserDataRequest {
+                            Data = new Dictionary<string, string> {
+                                { "Money", newMoney.ToString() }
+                            }
+                        };
+
+                        PlayFabClientAPI.UpdateUserData(updateUserDataRequest, updateResult => {
+                            Debug.Log("Money updated successfully.");
+                        }, error => {
+                            Debug.LogError("Error updating money: " + error.GenerateErrorReport());
+                        });
+                    }
+                }, error => {
+                    Debug.LogError("Error fetching user data: " + error.GenerateErrorReport());
+                });
+            } else {
+                Debug.LogError("RoomAmountofMoney is not a valid integer string.");
+            }
+        } else {
+            Debug.LogError("RoomAmountofMoney property not found or is not a string.");
+        }
+    }
+
+    public void Back() {
+        PhotonNetwork.LeaveRoom();
     }
 }
