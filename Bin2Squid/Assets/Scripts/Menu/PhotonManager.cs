@@ -8,6 +8,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public GameObject RoomPanel_, WaitingRoomPanel_;
     void Start()
     {
+        Debug.Log(System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
         if (!PhotonNetwork.IsConnected)
         {
             PhotonNetwork.ConnectUsingSettings();

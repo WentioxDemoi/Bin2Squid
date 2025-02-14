@@ -4,6 +4,9 @@ using PlayFab.ClientModels;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using Photon.Pun;
+using System.Text.RegularExpressions;
+using UnityEngine.EventSystems;
+using System;
 
 public class LogIn : MonoBehaviour
 {
@@ -12,6 +15,7 @@ public class LogIn : MonoBehaviour
     public GameObject MenuPanel_, RoomPanel_;
 
     void Start() {
+        Debug.Log(System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
         if (PlayFabClientAPI.IsClientLoggedIn() && PhotonNetwork.IsConnected) { 
             if (PhotonNetwork.InRoom) {
                 PhotonNetwork.LeaveRoom();
@@ -66,6 +70,29 @@ public class LogIn : MonoBehaviour
         {
             Debug.Log("Error while LogIn : " + error.ErrorMessage);
         });
+    }
+
+    private bool IsValidEmail(string email)
+    {
+        if (string.IsNullOrEmpty(email))
+            return false;
+
+        // Expression régulière pour vérifier une adresse e-mail
+        string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+        return Regex.IsMatch(email, emailPattern);
+    }
+    public void RecoveryPassword_() {
+        if (IsValidEmail(Email_.text))
+        {
+
+            var request = new SendAccountRecoveryEmailRequest
+            {
+                Email = Email_.text,
+                TitleId = PlayFabSettings.TitleId // Assurez-vous d'avoir configuré votre Title ID
+            };
+
+            PlayFabClientAPI.SendAccountRecoveryEmail(request, null, null);
+        }
     }
 
 }

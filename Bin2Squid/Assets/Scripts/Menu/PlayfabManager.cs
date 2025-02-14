@@ -10,6 +10,7 @@ public class PlayfabManager : MonoBehaviour
 
     private void Start()
     {
+         
         //GetMoney
         var requestMoney = new GetUserDataRequest();
         PlayFabClientAPI.GetUserData(requestMoney, OnGetMoney, error => Debug.Log("GetMoneyError"));
