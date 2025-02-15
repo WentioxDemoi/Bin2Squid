@@ -31,5 +31,6 @@ public class PlayfabManager : MonoBehaviour
         Debug.Log("Username: " + result.AccountInfo.Username);
         ProfileManager_.PutUsername("@" + result.AccountInfo.Username);
     }
+
 }
 

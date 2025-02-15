@@ -17,7 +17,7 @@ public class WaitingRoomManager : MonoBehaviour
 
     public GameObject StartGameButton_;
 
-    public float TimeUpdate_ = 1f;
+    public float TimeUpdate_ = 5f;
     float NextUpdateTime_;
 
 

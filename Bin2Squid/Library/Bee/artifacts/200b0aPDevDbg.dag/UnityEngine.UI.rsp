@@ -305,7 +305,7 @@
 -r:"/Applications/Unity/Hub/Editor/2021.3.28f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.VRModule.dll"
 -r:"/Applications/Unity/Hub/Editor/2021.3.28f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.WindModule.dll"
 -r:"/Applications/Unity/Hub/Editor/2021.3.28f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/mono/Managed/UnityEngine.XRModule.dll"
--r:"/Users/mimilazone/Documents/Perso/Bin2Squid/Bin2Squid/Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"/Users/remidesbordes/Documents/Bin2Squid/Bin2Squid/Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"Assets/Photon/PhotonLibs/netstandard2.0/Photon3Unity3D.dll"
 -r:"Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll"
 "Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventData/AxisEventData.cs"

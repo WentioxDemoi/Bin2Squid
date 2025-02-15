@@ -371,6 +371,7 @@
 "Assets/Scripts/Menu/Auth/SignIn.cs"
 "Assets/Scripts/Menu/Friend/Friend.cs"
 "Assets/Scripts/Menu/Friend/FriendsManager.cs"
+"Assets/Scripts/Menu/Friend/Status.cs"
 "Assets/Scripts/Menu/PhotonManager.cs"
 "Assets/Scripts/Menu/PlayfabManager.cs"
 "Assets/Scripts/Menu/Room/Profile/ProfileManager.cs"

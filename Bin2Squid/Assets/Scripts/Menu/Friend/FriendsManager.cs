@@ -5,7 +5,7 @@ using PlayFab.ClientModels;
 using Photon.Pun;
 using UnityEngine.UI;
 using System.Linq;
-
+using System.Collections;
 public class FriendsManager : MonoBehaviourPunCallbacks
 {
     public GameObject FriendPrefab_, Notif_, Error_, FriendRequest_;
@@ -55,6 +55,8 @@ public class FriendsManager : MonoBehaviourPunCallbacks
         }
     }
 
+
+
     public void OnClickAddButton()
     {
         PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest
@@ -70,19 +72,21 @@ public class FriendsManager : MonoBehaviourPunCallbacks
 
             PlayFabClientAPI.AddFriend(addFriendRequest, result =>
             {
-                GameObject Notifi = Instantiate(Notif_, ContentNotif_);
-                Notif tmp = Notifi.GetComponent<Notif>();
-                tmp.SetNotifText("Friend added successfully !");
-                Name_.text = "";
+                // GameObject Notifi = Instantiate(Notif_, ContentNotif_);
+                // Notif tmp = Notifi.GetComponent<Notif>();
+                // tmp.SetNotifText("Friend added successfully !");
+                // Name_.text = "";
             }, error =>
             {
-                GameObject errorObject = Instantiate(Error_, ContentNotif_);
-                Error errorScript = errorObject.GetComponent<Error>();
-                errorScript.SetErrorText("Something went wrong while adding friend !");
+                // GameObject errorObject = Instantiate(Error_, ContentNotif_);
+                // Error errorScript = errorObject.GetComponent<Error>();
+                // errorScript.SetErrorText("Something went wrong while adding friend !");
             });
-        }, error => { GameObject errorObject = Instantiate(Error_, ContentNotif_);
-                Error errorScript = errorObject.GetComponent<Error>();
-                errorScript.SetErrorText("Something went wrong while adding friend !"); });
+        }, error => { 
+            // GameObject errorObject = Instantiate(Error_, ContentNotif_);
+            // Error errorScript = errorObject.GetComponent<Error>();
+            // errorScript.SetErrorText("Something went wrong while adding friend !"); 
+        });
     }
 
     public void OnClickRemoveButton(string Name)
@@ -105,16 +109,16 @@ public class FriendsManager : MonoBehaviourPunCallbacks
 
     private void OnRemoveFriendSuccess(RemoveFriendResult result)
     {
-        GameObject Notifi = Instantiate(Notif_, ContentNotif_);
-        Notif tmp = Notifi.GetComponent<Notif>();
-        tmp.SetNotifText("Friend removed successfully !");
+        // GameObject Notifi = Instantiate(Notif_, ContentNotif_);
+        // Notif tmp = Notifi.GetComponent<Notif>();
+        // tmp.SetNotifText("Friend removed successfully !");
     }
 
     private void OnErrorRemoveFriend(PlayFabError error)
     {
-        GameObject errorObject = Instantiate(Error_, ContentNotif_);
-        Error errorScript = errorObject.GetComponent<Error>();
-        errorScript.SetErrorText("Something went wrong while deleting friend !");
+        // GameObject errorObject = Instantiate(Error_, ContentNotif_);
+        // Error errorScript = errorObject.GetComponent<Error>();
+        // errorScript.SetErrorText("Something went wrong while deleting friend !");
     }
 
 
@@ -122,8 +126,8 @@ public class FriendsManager : MonoBehaviourPunCallbacks
     {
         var request = new GetFriendsListRequest
         {
-            IncludeFacebookFriends = false,
-            IncludeSteamFriends = false
+            // IncludeFacebookFriends = false,
+            // IncludeSteamFriends = false
         };
 
         PlayFabClientAPI.GetFriendsList(request, result =>

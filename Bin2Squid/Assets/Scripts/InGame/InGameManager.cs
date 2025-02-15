@@ -1,6 +1,8 @@
 using System.Collections;
 using Photon.Pun;
 using UnityEngine;
+using PlayFab;
+using PlayFab.ClientModels;
 
 public class InGameManager : MonoBehaviourPun
 {
@@ -191,5 +193,20 @@ public class InGameManager : MonoBehaviourPun
     private void UpdateTimeLeftRPC(int timeLeft)
     {
         hudManager.GetComponent<HudManager>().UpdateTimeLeft(timeLeft);
+    }
+
+
+    private void OnApplicationQuit()
+    {
+        var request = new UpdateUserDataRequest
+        {
+            Data = new System.Collections.Generic.Dictionary<string, string>
+            {
+                { "Status", "offline" },
+            },
+            Permission = UserDataPermission.Public
+        };
+
+        PlayFabClientAPI.UpdateUserData(request, null, null);
     }
 }

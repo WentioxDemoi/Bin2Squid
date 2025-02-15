@@ -29,24 +29,24 @@ public class RoomDisplayManager : MonoBehaviourPunCallbacks
         }
         RoomItemList_.Clear();
         foreach (RoomInfo room in RoomList)
-            {
+        {
             if (!room.RemovedFromList)
             {
-                RoomItem newroom = Instantiate(roomItem, ContentObject_);
-                newroom.SetRoomName(room.Name);
-                newroom.SetRoomCapacity($"{room.PlayerCount}/{room.MaxPlayers}");
-
-                if (room.CustomProperties.TryGetValue("IsRoomPublic", out object isRoomPublic))
+                // Vérifie si la room est publique avant de l'afficher
+                if (room.CustomProperties.TryGetValue("IsRoomPublic", out object isRoomPublic) && (bool)isRoomPublic)
                 {
-                    bool isPublic = (bool)isRoomPublic;
-                    newroom.SetRoomLockState(isPublic);
-                }
-                if (room.CustomProperties.TryGetValue("RoomAmountofMoney", out object roomAmountofMoney))
-                {
-                    newroom.SetRoomCost(roomAmountofMoney.ToString() + "$");
-                }
+                    RoomItem newroom = Instantiate(roomItem, ContentObject_);
+                    newroom.SetRoomName(room.Name);
+                    newroom.SetRoomCapacity($"{room.PlayerCount}/{room.MaxPlayers}");
+                    newroom.SetRoomLockState(true);
 
-                RoomItemList_.Add(newroom);
+                    if (room.CustomProperties.TryGetValue("RoomAmountofMoney", out object roomAmountofMoney))
+                    {
+                        newroom.SetRoomCost(roomAmountofMoney.ToString() + "$");
+                    }
+
+                    RoomItemList_.Add(newroom);
+                }
             }
         }
         Debug.Log("Room List Update");

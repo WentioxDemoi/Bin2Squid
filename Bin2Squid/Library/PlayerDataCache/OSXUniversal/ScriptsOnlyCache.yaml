@@ -3,6 +3,8 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - BlocItem
     - BlocsManager
+    - Friend
+    - FriendsManager
     - HudManager
     - InGameManager
     - LogIn
@@ -14,6 +16,7 @@ ScriptsOnlyBuild:
     - RoomDisplayManager
     - RoomItem
     - SignIn
+    - Status
     - WaitingRoomManager
     - WinLoseCondition
     PhotonUnityNetworking.Demos.dll:
@@ -59,7 +62,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.InputField
     - UnityEngine.UI.Mask
+    - UnityEngine.UI.Outline
     - UnityEngine.UI.ScrollRect
+    - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Shadow
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
@@ -106,15 +111,28 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
     - UnityEngine.UI.Navigation
     - UnityEngine.UI.ScrollRect/ScrollRectEvent
+    - UnityEngine.UI.Scrollbar/ScrollEvent
     - UnityEngine.UI.Slider/SliderEvent
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
   - assembly: Assembly-CSharp
-    fullTypeName: RoomItem
-    methodName: OnClickRoomItem
+    fullTypeName: FriendsManager
+    methodName: OnClickAddButton
   - assembly: Assembly-CSharp
     fullTypeName: RoomItem
     methodName: OnClickRoomItem
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerItem
+    methodName: DisplayPlayerManager
+  - assembly: Assembly-CSharp
+    fullTypeName: RoomItem
+    methodName: OnClickRoomItem
+  - assembly: Assembly-CSharp
+    fullTypeName: Friend
+    methodName: OnClickDelete
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerItem
+    methodName: ExcludePlayer
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
@@ -130,6 +148,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: RoomCreationManager
     methodName: CreateRoom
+  - assembly: Assembly-CSharp
+    fullTypeName: LogIn
+    methodName: RecoveryPassword_
   - assembly: Assembly-CSharp
     fullTypeName: WaitingRoomManager
     methodName: StartGame
@@ -170,8 +191,20 @@ ScriptsOnlyBuild:
     fullTypeName: RoomItem
     methodName: OnClickRoomItem
   - assembly: Assembly-CSharp
+    fullTypeName: PlayerItem
+    methodName: DisplayPlayerManager
+  - assembly: Assembly-CSharp
     fullTypeName: RoomItem
     methodName: OnClickRoomItem
+  - assembly: Assembly-CSharp
+    fullTypeName: Friend
+    methodName: OnClickDelete
+  - assembly: Assembly-CSharp
+    fullTypeName: FriendsManager
+    methodName: OnClickAddButton
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerItem
+    methodName: ExcludePlayer
   - assembly: Assembly-CSharp
     fullTypeName: WinLoseCondition
     methodName: Back
@@ -211,35 +244,35 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 10012}
+      Script: {instanceID: 1568}
     - Class: 114
-      Script: {instanceID: 10390}
+      Script: {instanceID: 1570}
     - Class: 114
-      Script: {instanceID: 10922}
+      Script: {instanceID: 1622}
     - Class: 114
-      Script: {instanceID: 11106}
+      Script: {instanceID: 2002}
     - Class: 114
-      Script: {instanceID: 11318}
+      Script: {instanceID: 2542}
     - Class: 114
-      Script: {instanceID: 11534}
+      Script: {instanceID: 2728}
     - Class: 114
-      Script: {instanceID: 11632}
+      Script: {instanceID: 2946}
     - Class: 114
-      Script: {instanceID: 12594}
+      Script: {instanceID: 3162}
     - Class: 114
-      Script: {instanceID: 12784}
+      Script: {instanceID: 4244}
     - Class: 114
-      Script: {instanceID: 13702}
+      Script: {instanceID: 4436}
     - Class: 114
-      Script: {instanceID: 13970}
+      Script: {instanceID: 5366}
     - Class: 114
-      Script: {instanceID: 14288}
+      Script: {instanceID: 5962}
     - Class: 114
-      Script: {instanceID: 14442}
+      Script: {instanceID: 6118}
     - Class: 114
-      Script: {instanceID: 14782}
+      Script: {instanceID: 6458}
     - Class: 114
-      Script: {instanceID: 15008}
+      Script: {instanceID: 6686}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -298,95 +331,105 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 10012}
+      Script: {instanceID: 1568}
     - Class: 114
-      Script: {instanceID: 10058}
+      Script: {instanceID: 1570}
     - Class: 114
-      Script: {instanceID: 10222}
+      Script: {instanceID: 1622}
     - Class: 114
-      Script: {instanceID: 10284}
+      Script: {instanceID: 1668}
     - Class: 114
-      Script: {instanceID: 10390}
+      Script: {instanceID: 1832}
     - Class: 114
-      Script: {instanceID: 10642}
+      Script: {instanceID: 1896}
     - Class: 114
-      Script: {instanceID: 10646}
+      Script: {instanceID: 2002}
     - Class: 114
-      Script: {instanceID: 11106}
+      Script: {instanceID: 2258}
     - Class: 114
-      Script: {instanceID: 11318}
+      Script: {instanceID: 2264}
     - Class: 114
-      Script: {instanceID: 11368}
+      Script: {instanceID: 2728}
     - Class: 114
-      Script: {instanceID: 11534}
+      Script: {instanceID: 2946}
     - Class: 114
-      Script: {instanceID: 11632}
+      Script: {instanceID: 2996}
     - Class: 114
-      Script: {instanceID: 11950}
+      Script: {instanceID: 3162}
     - Class: 114
-      Script: {instanceID: 12276}
+      Script: {instanceID: 3584}
     - Class: 114
-      Script: {instanceID: 12388}
+      Script: {instanceID: 3916}
     - Class: 114
-      Script: {instanceID: 12390}
+      Script: {instanceID: 4030}
     - Class: 114
-      Script: {instanceID: 12440}
+      Script: {instanceID: 4032}
     - Class: 114
-      Script: {instanceID: 12548}
+      Script: {instanceID: 4082}
     - Class: 114
-      Script: {instanceID: 12594}
+      Script: {instanceID: 4198}
     - Class: 114
-      Script: {instanceID: 12688}
+      Script: {instanceID: 4244}
     - Class: 114
-      Script: {instanceID: 12874}
+      Script: {instanceID: 4340}
     - Class: 114
-      Script: {instanceID: 12964}
+      Script: {instanceID: 4526}
     - Class: 114
-      Script: {instanceID: 13172}
+      Script: {instanceID: 4616}
     - Class: 114
-      Script: {instanceID: 13628}
+      Script: {instanceID: 4826}
     - Class: 114
-      Script: {instanceID: 13646}
+      Script: {instanceID: 5292}
     - Class: 114
-      Script: {instanceID: 13702}
+      Script: {instanceID: 5308}
     - Class: 114
-      Script: {instanceID: 13758}
+      Script: {instanceID: 5366}
     - Class: 114
-      Script: {instanceID: 13786}
+      Script: {instanceID: 5424}
     - Class: 114
-      Script: {instanceID: 13906}
+      Script: {instanceID: 5454}
     - Class: 114
-      Script: {instanceID: 13970}
+      Script: {instanceID: 5578}
     - Class: 114
-      Script: {instanceID: 14054}
+      Script: {instanceID: 5724}
     - Class: 114
-      Script: {instanceID: 14096}
+      Script: {instanceID: 5766}
     - Class: 114
-      Script: {instanceID: 14288}
+      Script: {instanceID: 5962}
     - Class: 114
-      Script: {instanceID: 14442}
+      Script: {instanceID: 6118}
     - Class: 114
-      Script: {instanceID: 14722}
+      Script: {instanceID: 6398}
     - Class: 114
-      Script: {instanceID: 14782}
+      Script: {instanceID: 6458}
     - Class: 114
-      Script: {instanceID: 14790}
+      Script: {instanceID: 6466}
     - Class: 114
-      Script: {instanceID: 15122}
+      Script: {instanceID: 6468}
     - Class: 114
-      Script: {instanceID: 15232}
+      Script: {instanceID: 6800}
     - Class: 114
-      Script: {instanceID: 15400}
+      Script: {instanceID: 6822}
     - Class: 114
-      Script: {instanceID: 15920}
+      Script: {instanceID: 6910}
     - Class: 114
-      Script: {instanceID: 15924}
+      Script: {instanceID: 7078}
     - Class: 114
-      Script: {instanceID: 16268}
+      Script: {instanceID: 7604}
     - Class: 114
-      Script: {instanceID: 16390}
+      Script: {instanceID: 7608}
     - Class: 114
-      Script: {instanceID: 16694}
+      Script: {instanceID: 7960}
+    - Class: 114
+      Script: {instanceID: 8084}
+    - Class: 114
+      Script: {instanceID: 8390}
+    - Class: 114
+      Script: {instanceID: 28622}
+    - Class: 114
+      Script: {instanceID: 28624}
+    - Class: 114
+      Script: {instanceID: 49412}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -418,6 +461,30 @@ ScriptsOnlyBuild:
     - Class: 225
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: 699619b86d9359741a4f58540298c80b
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Text
+  - hash:
+      serializedVersion: 2
+      Hash: 69415240821be7986b27e72bf9609a30
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Button
+  - hash:
+      serializedVersion: 2
+      Hash: 0dbc3be398b4869a5c8d0d8481ee402c
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: LayoutElement
+  - hash:
+      serializedVersion: 2
+      Hash: 3164bc883ff663a5cdb32d1ef7e7c0c5
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: HorizontalLayoutGroup
   - hash:
       serializedVersion: 2
       Hash: 7271649844da568677253e9df423644e
@@ -466,12 +533,6 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.SlotRacer.Utils
     className: BezierSpline
-  - hash:
-      serializedVersion: 2
-      Hash: 0dbc3be398b4869a5c8d0d8481ee402c
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: LayoutElement
   - hash:
       serializedVersion: 2
       Hash: cba6cca6bb3290c4c00d709cf63843db
@@ -838,12 +899,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ToggleGroup
-  - hash:
-      serializedVersion: 2
-      Hash: 69415240821be7986b27e72bf9609a30
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Button
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1374,12 +1429,6 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
-      Hash: 3164bc883ff663a5cdb32d1ef7e7c0c5
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: HorizontalLayoutGroup
-  - hash:
-      serializedVersion: 2
       Hash: 55fd795e51da61232a17e9ce0af59f52
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Asteroids
@@ -1468,12 +1517,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnDeselectMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 699619b86d9359741a4f58540298c80b
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Text
   - hash:
       serializedVersion: 2
       Hash: c656dcc13ae391b68d594cc8f9c590b0
@@ -1680,7 +1723,7 @@ ScriptsOnlyBuild:
     className: ConnectToRegionUIForm
   - hash:
       serializedVersion: 2
-      Hash: bcd2b5ecc7c8d87515350c4457b1f4ea
+      Hash: 5556159b87631be54ce0601581212bc7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerItem
@@ -2110,8 +2153,26 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 433b3818f9a9fe87abf661ed7fe85427
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FriendsManager
+  - hash:
+      serializedVersion: 2
+      Hash: 1ffc4c6c5944feb1e206502d4dac49fa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Friend
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Status
   platform: 2
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/InGame.unity
-  playerPath: /Users/mimilazone/Documents/Perso/Bin2Squid/Bin2Squid/Bin2Squid.app
+  playerPath: /Users/remidesbordes/Documents/Bin2Squid/Bin2Squid/Bin2Squid.app
