@@ -3,6 +3,8 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - BlocItem
     - BlocsManager
+    - Chat
+    - ChatManager
     - Friend
     - FriendsManager
     - HudManager
@@ -58,6 +60,7 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.InputField
@@ -116,6 +119,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
   - assembly: Assembly-CSharp
+    fullTypeName: ChatManager
+    methodName: SendMessage
+  - assembly: Assembly-CSharp
     fullTypeName: FriendsManager
     methodName: OnClickAddButton
   - assembly: Assembly-CSharp
@@ -125,14 +131,14 @@ ScriptsOnlyBuild:
     fullTypeName: PlayerItem
     methodName: DisplayPlayerManager
   - assembly: Assembly-CSharp
+    fullTypeName: PlayerItem
+    methodName: ExcludePlayer
+  - assembly: Assembly-CSharp
     fullTypeName: RoomItem
     methodName: OnClickRoomItem
   - assembly: Assembly-CSharp
     fullTypeName: Friend
     methodName: OnClickDelete
-  - assembly: Assembly-CSharp
-    fullTypeName: PlayerItem
-    methodName: ExcludePlayer
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
@@ -197,17 +203,20 @@ ScriptsOnlyBuild:
     fullTypeName: PlayerItem
     methodName: DisplayPlayerManager
   - assembly: Assembly-CSharp
+    fullTypeName: PlayerItem
+    methodName: ExcludePlayer
+  - assembly: Assembly-CSharp
     fullTypeName: RoomItem
     methodName: OnClickRoomItem
-  - assembly: Assembly-CSharp
-    fullTypeName: Friend
-    methodName: OnClickDelete
   - assembly: Assembly-CSharp
     fullTypeName: FriendsManager
     methodName: OnClickAddButton
   - assembly: Assembly-CSharp
-    fullTypeName: PlayerItem
-    methodName: ExcludePlayer
+    fullTypeName: Friend
+    methodName: OnClickDelete
+  - assembly: Assembly-CSharp
+    fullTypeName: ChatManager
+    methodName: SendMessage
   - assembly: Assembly-CSharp
     fullTypeName: WinLoseCondition
     methodName: Back
@@ -247,35 +256,35 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1568}
+      Script: {instanceID: 1564}
     - Class: 114
-      Script: {instanceID: 1570}
+      Script: {instanceID: 1566}
     - Class: 114
-      Script: {instanceID: 1622}
+      Script: {instanceID: 1620}
     - Class: 114
-      Script: {instanceID: 2002}
+      Script: {instanceID: 2000}
     - Class: 114
-      Script: {instanceID: 2542}
+      Script: {instanceID: 2540}
     - Class: 114
-      Script: {instanceID: 2728}
+      Script: {instanceID: 2726}
     - Class: 114
-      Script: {instanceID: 2946}
+      Script: {instanceID: 2944}
     - Class: 114
-      Script: {instanceID: 3162}
+      Script: {instanceID: 3160}
     - Class: 114
       Script: {instanceID: 4244}
     - Class: 114
       Script: {instanceID: 4436}
     - Class: 114
-      Script: {instanceID: 5366}
+      Script: {instanceID: 5368}
     - Class: 114
-      Script: {instanceID: 5962}
+      Script: {instanceID: 5964}
     - Class: 114
-      Script: {instanceID: 6118}
+      Script: {instanceID: 6120}
     - Class: 114
-      Script: {instanceID: 6458}
+      Script: {instanceID: 6460}
     - Class: 114
-      Script: {instanceID: 6686}
+      Script: {instanceID: 6688}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -334,31 +343,37 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1568}
+      Script: {instanceID: 1564}
     - Class: 114
-      Script: {instanceID: 1570}
+      Script: {instanceID: 1566}
     - Class: 114
-      Script: {instanceID: 1622}
+      Script: {instanceID: 1572}
     - Class: 114
-      Script: {instanceID: 1668}
+      Script: {instanceID: 1620}
     - Class: 114
-      Script: {instanceID: 1832}
+      Script: {instanceID: 1666}
     - Class: 114
-      Script: {instanceID: 1896}
+      Script: {instanceID: 1830}
     - Class: 114
-      Script: {instanceID: 2002}
+      Script: {instanceID: 1894}
     - Class: 114
-      Script: {instanceID: 2258}
+      Script: {instanceID: 2000}
     - Class: 114
-      Script: {instanceID: 2264}
+      Script: {instanceID: 2256}
     - Class: 114
-      Script: {instanceID: 2728}
+      Script: {instanceID: 2262}
     - Class: 114
-      Script: {instanceID: 2946}
+      Script: {instanceID: 2726}
     - Class: 114
-      Script: {instanceID: 2996}
+      Script: {instanceID: 2944}
     - Class: 114
-      Script: {instanceID: 3162}
+      Script: {instanceID: 2994}
+    - Class: 114
+      Script: {instanceID: 3160}
+    - Class: 114
+      Script: {instanceID: 3292}
+    - Class: 114
+      Script: {instanceID: 3438}
     - Class: 114
       Script: {instanceID: 3584}
     - Class: 114
@@ -386,53 +401,53 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5308}
     - Class: 114
-      Script: {instanceID: 5366}
+      Script: {instanceID: 5360}
     - Class: 114
-      Script: {instanceID: 5424}
+      Script: {instanceID: 5368}
     - Class: 114
-      Script: {instanceID: 5454}
+      Script: {instanceID: 5426}
     - Class: 114
-      Script: {instanceID: 5578}
+      Script: {instanceID: 5456}
     - Class: 114
-      Script: {instanceID: 5724}
+      Script: {instanceID: 5580}
     - Class: 114
-      Script: {instanceID: 5766}
+      Script: {instanceID: 5726}
     - Class: 114
-      Script: {instanceID: 5962}
+      Script: {instanceID: 5768}
     - Class: 114
-      Script: {instanceID: 6118}
+      Script: {instanceID: 5964}
     - Class: 114
-      Script: {instanceID: 6398}
+      Script: {instanceID: 6120}
     - Class: 114
-      Script: {instanceID: 6458}
+      Script: {instanceID: 6400}
     - Class: 114
-      Script: {instanceID: 6466}
+      Script: {instanceID: 6460}
     - Class: 114
       Script: {instanceID: 6468}
     - Class: 114
-      Script: {instanceID: 6800}
+      Script: {instanceID: 6470}
     - Class: 114
-      Script: {instanceID: 6822}
+      Script: {instanceID: 6802}
     - Class: 114
-      Script: {instanceID: 6910}
+      Script: {instanceID: 6824}
     - Class: 114
-      Script: {instanceID: 7078}
+      Script: {instanceID: 6912}
     - Class: 114
-      Script: {instanceID: 7604}
+      Script: {instanceID: 7080}
+    - Class: 114
+      Script: {instanceID: 7188}
     - Class: 114
       Script: {instanceID: 7608}
     - Class: 114
-      Script: {instanceID: 7960}
+      Script: {instanceID: 7962}
     - Class: 114
-      Script: {instanceID: 8084}
+      Script: {instanceID: 8086}
     - Class: 114
-      Script: {instanceID: 8390}
+      Script: {instanceID: 8392}
     - Class: 114
-      Script: {instanceID: 28622}
+      Script: {instanceID: 24736}
     - Class: 114
-      Script: {instanceID: 28624}
-    - Class: 114
-      Script: {instanceID: 49412}
+      Script: {instanceID: 24738}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -488,6 +503,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: HorizontalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 040dd48e3a027d5424519a5fa2009df4
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: ScrollRect
   - hash:
       serializedVersion: 2
       Hash: 7271649844da568677253e9df423644e
@@ -902,6 +923,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ToggleGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 1ffc4c6c5944feb1e206502d4dac49fa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Friend
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1444,6 +1471,12 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionEnter2DMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Status
+  - hash:
+      serializedVersion: 2
       Hash: dcd6510802860a8c46ac579712118fc5
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
@@ -1846,6 +1879,12 @@ ScriptsOnlyBuild:
     className: ToDemoHubButton
   - hash:
       serializedVersion: 2
+      Hash: 433b3818f9a9fe87abf661ed7fe85427
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FriendsManager
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -1970,12 +2009,6 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.dll
     namespaceName: Photon.Pun
     className: PhotonRigidbodyView
-  - hash:
-      serializedVersion: 2
-      Hash: 040dd48e3a027d5424519a5fa2009df4
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: ScrollRect
   - hash:
       serializedVersion: 2
       Hash: 4f417ca0a3b31b376eb402726c240bde
@@ -2158,24 +2191,18 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 433b3818f9a9fe87abf661ed7fe85427
+      Hash: 92b1adaf863e70c733576d0abf080f2e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: FriendsManager
+    className: Chat
   - hash:
       serializedVersion: 2
-      Hash: 1ffc4c6c5944feb1e206502d4dac49fa
+      Hash: 0b2f938a2cd71913e71bfdf184bdee0f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Friend
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Status
+    className: ChatManager
   platform: 2
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/InGame.unity
-  playerPath: /Users/remidesbordes/Documents/Bin2Squid/Bin2Squid/Bin2Squid.app
+  playerPath: /Users/remidesbordes/Documents/Bin2SquidExe.app
