@@ -10,18 +10,22 @@ public class BlocItem : MonoBehaviourPun
     private static BlocItem currentlySelectedBloc = null;
     public int playerCount = 0;
 
+    // Initialisation du bloc au démarrage
     private void Start() {
     }
 
+    // Initialise le texte de capacité avec 0 joueurs sur le nombre total de joueurs
     public void StartCapacityText() {
         CapacityText.text = 0 + "/" + PhotonNetwork.PlayerList.Length;
     }
 
+    // Change la couleur du bloc
     public void SetColor(Color newColor) 
     {
         gameObject.GetComponent<Renderer>().material.color = newColor;
     }
 
+    // Gère la sélection/désélection du bloc lors d'un clic de souris
     private void OnMouseDown()
     {
         if (!isClickable)
@@ -52,6 +56,7 @@ public class BlocItem : MonoBehaviourPun
         }
     }
 
+    // Met à jour le texte de capacité du bloc en réseau
     [PunRPC]
     private void UpdateCapacityText(int change, string position)
     {
@@ -62,10 +67,12 @@ public class BlocItem : MonoBehaviourPun
         }
     }
 
+    // Retourne le nombre de joueurs actuellement sur le bloc
     public int IsFull() {
         return playerCount;
     }
 
+    // Désélectionne le bloc et met à jour son apparence
     private void Deselect()
     {
         selected = false;

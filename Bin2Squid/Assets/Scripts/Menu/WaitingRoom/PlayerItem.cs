@@ -14,11 +14,13 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         PhotonNetwork.EnableCloseConnection = true;
     }
 
+    // Sets the username text for the player item.
     public void SetUsername(string username)
     {
         Username_.text = username;
     }
 
+    // Toggles the visibility of the ExcludeButton if the current client is the MasterClient.
     public void DisplayPlayerManager()
     {
         if (PhotonNetwork.IsMasterClient)
@@ -38,14 +40,15 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         }
     }
 
+    // Excludes a player from the room by closing their connection.
     public void ExcludePlayer()
     {
         PhotonNetwork.CloseConnection(GetPlayerByName());
     }
 
+    // Retrieves a Player object from the PhotonNetwork.PlayerList based on the username.
     public Player GetPlayerByName()
     {
-
         foreach (Player player in PhotonNetwork.PlayerList)
         {
             if (player.NickName == Username_.text)

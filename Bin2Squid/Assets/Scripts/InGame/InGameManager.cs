@@ -14,6 +14,7 @@ public class InGameManager : MonoBehaviourPun
 
     int i = 0;
 
+    // Initializes the game by creating the first set of blocks if the client is the master
     private void Start()
     {
         if (!PhotonNetwork.IsMasterClient)
@@ -33,6 +34,7 @@ public class InGameManager : MonoBehaviourPun
         StartCoroutine(ManageBlocs());
     }
 
+    // Updates the UI hints based on block selection and checks for single player condition
     private void Update() {
         if (FirstBloc.GetComponent<BlocsManager>().isSelected) {
             hudManager.GetComponent<HudManager>().StopHintAnimation();
@@ -47,6 +49,7 @@ public class InGameManager : MonoBehaviourPun
         }
     }
 
+    // Randomly breaks either the left or right side of the current first block
     private void BreakBloc() {
         bool randomBool = Random.value > 0.5f;
         if (randomBool) {
@@ -56,6 +59,7 @@ public class InGameManager : MonoBehaviourPun
         }
     }
 
+    // RPC function that handles the block breaking logic on all clients
     [PunRPC]
     public void BreakBlocRPC(int side) {
         if (side == 0) {
@@ -79,15 +83,18 @@ public class InGameManager : MonoBehaviourPun
         }
     }
 
+    // Triggers the win condition after a delay
     private IEnumerator WaitAndWin() {
         yield return new WaitForSeconds(3f);
         winLoseCondition.GetComponent<WinLoseCondition>().Win();
     }
+    // Triggers the lose condition after a delay
     private IEnumerator WaitAndLose() {
         yield return new WaitForSeconds(3f);
         winLoseCondition.GetComponent<WinLoseCondition>().Lose();
     }
 
+    // Main game loop that manages block timing, destruction, and creation
     IEnumerator ManageBlocs()
     {
         bool trigger;
@@ -152,11 +159,13 @@ public class InGameManager : MonoBehaviourPun
         }
     }
 
+    // RPC function that disables clicking on the first block
     [PunRPC]
     private void BlockClickRPC() {
         FirstBloc.GetComponent<BlocsManager>().isClickable = false;
     }
 
+    // RPC function that sets a block as the first block across all clients
     [PunRPC]
     private void SetBlocAsFirstRPC(int blocViewID)
     {
@@ -167,12 +176,14 @@ public class InGameManager : MonoBehaviourPun
         }
     }
 
+    // RPC function that triggers camera movement across all clients
     [PunRPC]
     private void MoveCameraRPC()
     {
         StartCoroutine(MoveCamera());
     }
 
+    // Smoothly moves the camera forward
     IEnumerator MoveCamera()
     {
         Vector3 startPosition = mainCamera.transform.position;
@@ -189,13 +200,14 @@ public class InGameManager : MonoBehaviourPun
         mainCamera.transform.position = endPosition;
     }
 
+    // RPC function that updates the time left display on all clients
     [PunRPC]
     private void UpdateTimeLeftRPC(int timeLeft)
     {
         hudManager.GetComponent<HudManager>().UpdateTimeLeft(timeLeft);
     }
 
-
+    // Updates the player's status to offline in PlayFab when the game is closed
     private void OnApplicationQuit()
     {
         var request = new UpdateUserDataRequest

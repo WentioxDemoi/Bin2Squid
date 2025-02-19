@@ -20,7 +20,7 @@ public class WaitingRoomManager : MonoBehaviour
     public float TimeUpdate_ = 5f;
     float NextUpdateTime_;
 
-
+    // Called when the script is enabled; initializes room details and player list.
     private void OnEnable()
     {
         GetRoomName();
@@ -29,6 +29,7 @@ public class WaitingRoomManager : MonoBehaviour
         AddPlayerList();
     }
 
+    // Retrieves and displays the current room's name.
     private void GetRoomName()
     {
         if (PhotonNetwork.CurrentRoom != null)
@@ -41,6 +42,7 @@ public class WaitingRoomManager : MonoBehaviour
         }
     }
 
+    // Retrieves and displays the current room's capacity and player count.
     private void GetRoomCapacity()
     {
         if (PhotonNetwork.CurrentRoom != null)
@@ -55,6 +57,7 @@ public class WaitingRoomManager : MonoBehaviour
         }
     }
 
+    // Retrieves and displays the current room's cost from custom properties.
     private void GetRoomCost()
     {
         if (PhotonNetwork.CurrentRoom != null && PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("RoomAmountofMoney"))
@@ -67,6 +70,7 @@ public class WaitingRoomManager : MonoBehaviour
         }
     }
 
+    // Updates the room capacity and player list at regular intervals.
     private void Update()
     {
         if (Time.time >= NextUpdateTime_)
@@ -93,6 +97,7 @@ public class WaitingRoomManager : MonoBehaviour
         }
     }
 
+    // Deletes the current player list and refreshes it.
     public void DeletePlayerList()
     {
         foreach (PlayerItem Item in PlayerItemList_)
@@ -104,6 +109,7 @@ public class WaitingRoomManager : MonoBehaviour
         AddPlayerList();
     }
 
+    // Adds players to the player list UI.
     public void AddPlayerList()
     {
         Photon.Realtime.Player[] players = PhotonNetwork.PlayerList;
@@ -117,6 +123,7 @@ public class WaitingRoomManager : MonoBehaviour
         }
     }
 
+    // Initiates the start of the game and updates room properties.
     public void StartGame()
     {
         photonView.RPC("UpdateMoney", RpcTarget.All);
@@ -125,12 +132,14 @@ public class WaitingRoomManager : MonoBehaviour
         photonView.RPC("RPC_StartGame", RpcTarget.All);
     }
 
+    // Loads the in-game scene for all players.
     [PunRPC]
     private void RPC_StartGame()
     {
         PhotonNetwork.LoadLevel("InGame");
     }
 
+    // Updates the player's money by deducting the room cost.
     [PunRPC]
     private void UpdateMoney() {
         // Check if the custom property exists and is a string
@@ -168,6 +177,7 @@ public class WaitingRoomManager : MonoBehaviour
         }
     }
 
+    // Allows the player to leave the current room.
     public void Back() {
         PhotonNetwork.LeaveRoom();
     }

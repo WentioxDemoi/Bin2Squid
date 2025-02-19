@@ -9,12 +9,15 @@ public class Chat : MonoBehaviour
 
     public Text Message;
     public Text Name;
+
+    // Initialise le chat en le plaçant au premier plan dans la hiérarchie des éléments UI
     void Start()
     {
         GetComponent<RectTransform>().SetAsFirstSibling();
     }
 
-    // Update is called once per frame
+    // Fonction appelée à chaque frame pour mettre à jour le chat
+    // Actuellement vide car aucune mise à jour n'est nécessaire
     void Update()
     {
         

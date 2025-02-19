@@ -11,6 +11,11 @@ public class SignIn : MonoBehaviour
 
     public GameObject MenuPanel_, RoomPanel_;
 
+
+    /// Gère l'inscription d'un nouvel utilisateur dans PlayFab.
+    /// - Enregistre l'utilisateur avec son email, nom d'utilisateur et mot de passe
+    /// - Définit le surnom Photon pour le multijoueur
+    /// - Initialise le compte avec 100 de monnaie (temporaire)
     public void SignIn_()
     {
         var request = new RegisterPlayFabUserRequest

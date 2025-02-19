@@ -12,6 +12,7 @@ public class RoomCreationManager : MonoBehaviour
     public Button PublicButton_, PrivateButton_;
     public ProfileManager profileManager;
 
+    // Initialise les valeurs par défaut et configure les listeners pour les champs de saisie
     private void Start()
     {
         RoomNumberOfPlayers_.text = "1";
@@ -22,6 +23,7 @@ public class RoomCreationManager : MonoBehaviour
         RoomNumberOfPlayers_.onEndEdit.AddListener(delegate { ValidateRoomNumberOfPlayers(); });
     }
 
+    // Vérifie que le montant de la room ne dépasse pas l'argent du joueur et est positif
     private void ValidateRoomAmount()
     {
         if (float.TryParse(RoomAmountofMoney_.text, out float amountOfMoney))
@@ -36,6 +38,7 @@ public class RoomCreationManager : MonoBehaviour
         }
     }
 
+    // Vérifie que le nombre de joueurs est entre 1 et 50
     private void ValidateRoomNumberOfPlayers()
     {
         if (int.TryParse(RoomNumberOfPlayers_.text, out int numberOfPlayers))
@@ -51,6 +54,7 @@ public class RoomCreationManager : MonoBehaviour
         }
     }
 
+    // Active le mode public pour la room
     public void PublicButton()
     {
         if (IsRoomPublic_ != true)
@@ -61,6 +65,7 @@ public class RoomCreationManager : MonoBehaviour
         }
     }
 
+    // Active le mode privé pour la room
     public void PrivateButton()
     {
         if (IsRoomPublic_ != false)
@@ -71,6 +76,7 @@ public class RoomCreationManager : MonoBehaviour
         }
     }
 
+    // Augmente le nombre de joueurs de 1
     public void PlusButton()
     {
         int numberOfPlayers = int.Parse(RoomNumberOfPlayers_.text);
@@ -79,6 +85,7 @@ public class RoomCreationManager : MonoBehaviour
         ValidateRoomNumberOfPlayers();
     }
 
+    // Diminue le nombre de joueurs de 1
     public void MinusButton()
     {
         int numberOfPlayers = int.Parse(RoomNumberOfPlayers_.text);
@@ -87,6 +94,7 @@ public class RoomCreationManager : MonoBehaviour
         ValidateRoomNumberOfPlayers();
     }
 
+    // Crée une nouvelle room avec les paramètres spécifiés
     public void CreateRoom()
     {
         if (int.TryParse(RoomNumberOfPlayers_.text, out int numberOfPlayers) && numberOfPlayers >= 1 &&

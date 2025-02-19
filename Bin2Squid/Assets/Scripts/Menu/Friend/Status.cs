@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Status : MonoBehaviour
 {
-
+    // Définit le statut du joueur comme "en ligne" au démarrage du jeu
     public void Start()
     {
         SaveStatus("online");
     }
 
+    // Sauvegarde le statut du joueur (en ligne/hors ligne) dans PlayFab
     public void SaveStatus(string status)
     {
         var request = new UpdateUserDataRequest
@@ -24,6 +25,7 @@ public class Status : MonoBehaviour
         PlayFabClientAPI.UpdateUserData(request, null, null);
     }
 
+    // Définit le statut du joueur comme "hors ligne" quand le jeu se ferme
     private void OnApplicationQuit()
     {
         SaveStatus("offline");

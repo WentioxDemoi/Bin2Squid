@@ -13,6 +13,7 @@ public class BlocsManager : MonoBehaviour
 
     public bool isClickable;
 
+    // Initialise les deux blocs avec des couleurs aléatoires différentes
     private void Start()
     {
         Color leftColor = GetRandomColor();
@@ -26,6 +27,7 @@ public class BlocsManager : MonoBehaviour
         BlocRightItem_.SetColor(rightColor);
     }
 
+    // Met à jour l'état des blocs : initialisation, cliquabilité et sélection
     private void Update()
     {
         if (isFirst && !hasInitialized)
@@ -52,6 +54,7 @@ public class BlocsManager : MonoBehaviour
             BlocLeftItem_.selected = false;
     }
 
+    // Vérifie si tous les joueurs ont choisi un bloc
     public bool IsFull() {
         if (BlocLeftItem_.IsFull() + BlocRightItem_.IsFull() == PhotonNetwork.PlayerList.Length) {
             return true;
@@ -59,6 +62,7 @@ public class BlocsManager : MonoBehaviour
         return false;
     }
 
+    // Retourne une couleur aléatoire parmi rouge, vert et bleu
     private Color GetRandomColor()
     {
         int randomIndex = Random.Range(0, 3);

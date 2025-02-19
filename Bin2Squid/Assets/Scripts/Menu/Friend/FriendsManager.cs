@@ -25,19 +25,20 @@ public class FriendsManager : MonoBehaviourPunCallbacks
 
     private const byte CustomEventCode = 1;
 
+    // Initialise le gestionnaire d'amis en récupérant le nom d'utilisateur du joueur via PlayFab
     void Start()
     {
         lastFindFriendsTime = Time.time;
         PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest(), result => {
-        string username = result.AccountInfo.Username;
-        Username_.text = "Your username is : " + username;
+            string username = result.AccountInfo.Username;
+            Username_.text = "Your username is : " + username;
         }, error => {
             Username_.text = "Failed to fetch username";
             Debug.LogError("Failed to get account info: " + error.ErrorMessage);
         });
-        
     }
 
+    // Vérifie les entrées clavier pour l'ajout d'amis et met à jour la liste des amis toutes les secondes
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
@@ -49,14 +50,12 @@ public class FriendsManager : MonoBehaviourPunCallbacks
         }
         if (Time.time - lastFindFriendsTime >= 1f)
         {
-
             GetFriendsList();
             lastFindFriendsTime = Time.time;
         }
     }
 
-
-
+    // Ajoute un nouvel ami en utilisant son nom d'utilisateur via l'API PlayFab
     public void OnClickAddButton()
     {
         PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest
@@ -89,6 +88,7 @@ public class FriendsManager : MonoBehaviourPunCallbacks
         });
     }
 
+    // Supprime un ami de la liste en utilisant son nom d'utilisateur
     public void OnClickRemoveButton(string Name)
     {
         PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest
@@ -107,6 +107,7 @@ public class FriendsManager : MonoBehaviourPunCallbacks
         }, error => { Debug.LogError("Failed to get PlayFab account info: " + error.ErrorMessage); });
     }
 
+    // Callback appelé lorsque la suppression d'un ami a réussi
     private void OnRemoveFriendSuccess(RemoveFriendResult result)
     {
         // GameObject Notifi = Instantiate(Notif_, ContentNotif_);
@@ -114,6 +115,7 @@ public class FriendsManager : MonoBehaviourPunCallbacks
         // tmp.SetNotifText("Friend removed successfully !");
     }
 
+    // Callback appelé en cas d'erreur lors de la suppression d'un ami
     private void OnErrorRemoveFriend(PlayFabError error)
     {
         // GameObject errorObject = Instantiate(Error_, ContentNotif_);
@@ -121,7 +123,7 @@ public class FriendsManager : MonoBehaviourPunCallbacks
         // errorScript.SetErrorText("Something went wrong while deleting friend !");
     }
 
-
+    // Récupère et met à jour la liste complète des amis depuis PlayFab
     private void GetFriendsList()
     {
         var request = new GetFriendsListRequest
@@ -162,6 +164,7 @@ public class FriendsManager : MonoBehaviourPunCallbacks
         });
     }
 
+    // Vérifie et met à jour le statut de connexion d'un ami spécifique
     void GetConnectStatus(string friendPlayFabId, string username)
     {
         var request = new GetUserDataRequest
@@ -194,7 +197,7 @@ public class FriendsManager : MonoBehaviourPunCallbacks
         });
     }
 
-
+    // Gère l'affichage/masquage des fenêtres de chat et d'amis
     public void OnClick()
     {
         if (Chat.activeSelf)

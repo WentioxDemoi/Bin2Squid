@@ -6,6 +6,8 @@ using PlayFab.ClientModels;
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
     public GameObject RoomPanel_, WaitingRoomPanel_;
+
+    // Initialisation du script et connexion à Photon si nécessaire
     void Start()
     {
         Debug.Log(System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
@@ -15,26 +17,28 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         }
     }
 
+    // Callback appelé lorsque la connexion au serveur maître est établie
     public override void OnConnectedToMaster()
     {
          PhotonNetwork.JoinLobby();
     }
 
+    // Callback appelé lorsque la création d'une salle est réussie
     public override void OnCreatedRoom()
     {
         RoomPanel_.SetActive(false);
         WaitingRoomPanel_.SetActive(true);
     }
 
+    // Callback appelé lorsque le joueur rejoint un lobby
     public override void OnJoinedLobby()
     {
         Debug.Log("Joined Lobby");
     }
 
+    // Callback appelé lorsque le joueur rejoint une salle
     public override void OnJoinedRoom()
     {
-        
-
         // Vérification du coût de la salle
         if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue("RoomAmountofMoney", out object roomCostString))
         {
@@ -73,6 +77,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             return;
         }
 
+        // Vérification de l'état du jeu dans la salle
         if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue("GameState", out object gameState))
         {
             if (gameState.ToString() == "en attente")
@@ -96,6 +101,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("Room joined : " + PhotonNetwork.CurrentRoom.Name);
     }
 
+    // Callback appelé lorsque le joueur quitte une salle
     public override void OnLeftRoom() {
         RoomPanel_.SetActive(true);
         WaitingRoomPanel_.SetActive(false);

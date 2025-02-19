@@ -25,9 +25,10 @@ public class ChatManager : MonoBehaviour
     public ScrollRect scrollRect;
     // Start is called before the first frame update
 
+    // Vérifie à chaque frame si la touche Entrée est pressée pour envoyer un message
+    // et gère l'état du chat en fonction de la connexion
     void Update()
     {
-        // Vérifie si la touche Entrée est pressée et si un bouton est actuellement sélectionné
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             if (gameObject.activeSelf) {
@@ -40,6 +41,9 @@ public class ChatManager : MonoBehaviour
         // }
 
     }
+
+    // Envoie le message à tous les joueurs connectés via le réseau Photon
+    // si le champ de texte n'est pas vide
     public void SendMessage()
     {
         if (inputField.text.Length <= 0)
@@ -48,6 +52,9 @@ public class ChatManager : MonoBehaviour
         inputField.text = "";
     }
 
+    // Reçoit et affiche un message dans l'interface du chat
+    // Crée différentes tailles de bulles de message selon la longueur du texte
+    // et différencie les messages de l'utilisateur local des autres joueurs
     [PunRPC]
     public void GetMessage(string name, string ReceiveMessage)
     {

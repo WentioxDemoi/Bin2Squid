@@ -2564,4 +2564,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/InGame.unity
-  playerPath: /Users/remidesbordes/Documents/Bin2Squid/Bin2Squid/ok.app
+  playerPath: /Users/remidesbordes/Documents/Bin2Squid/Bin2Squid/Bin2SquidMasOS.app

@@ -16,16 +16,19 @@ public class RoomDisplayManager : MonoBehaviourPunCallbacks
 
     public Text PrivateRoomName_;
 
+    // Joins a private room using the name specified in the PrivateRoomName_ text field.
     public void JoinPrivateRoom()
     {
         PhotonNetwork.JoinRoom(PrivateRoomName_.text);
     }
 
+    // Joins a room with the specified room name.
     public void JoinRoom(string RoomName)
     {
         PhotonNetwork.JoinRoom(RoomName);
     }
 
+    // Updates the room list display with the current list of available rooms.
     public override void OnRoomListUpdate(List<RoomInfo> RoomList)
     {
         // Assurez-vous que la liste est mise à jour immédiatement

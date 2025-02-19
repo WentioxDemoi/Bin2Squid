@@ -14,6 +14,7 @@ public class LogIn : MonoBehaviour
 
     public GameObject MenuPanel_, RoomPanel_;
 
+    // Vérifie au démarrage si l'utilisateur est déjà connecté et gère la connexion au lobby Photon
     void Start() {
         Debug.Log(System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
         if (PlayFabClientAPI.IsClientLoggedIn() && PhotonNetwork.IsConnected) { 
@@ -31,6 +32,8 @@ public class LogIn : MonoBehaviour
         }       
     }
 
+    // Gère la connexion de l'utilisateur avec son email et mot de passe via PlayFab
+    // Si les champs sont vides, utilise des identifiants par défaut
     public void LogIn_()
     {
         LoginWithEmailAddressRequest request = null;
@@ -72,6 +75,7 @@ public class LogIn : MonoBehaviour
         });
     }
 
+    // Vérifie si une chaîne de caractères correspond à un format d'email valide
     private bool IsValidEmail(string email)
     {
         if (string.IsNullOrEmpty(email))
@@ -81,6 +85,8 @@ public class LogIn : MonoBehaviour
         string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
         return Regex.IsMatch(email, emailPattern);
     }
+
+    // Envoie un email de récupération de mot de passe à l'adresse email spécifiée
     public void RecoveryPassword_() {
         if (IsValidEmail(Email_.text))
         {

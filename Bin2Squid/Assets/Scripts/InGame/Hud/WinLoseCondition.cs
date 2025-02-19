@@ -12,6 +12,10 @@ public class WinLoseCondition : MonoBehaviour
 
     bool trigger = false;
 
+
+    /// Gère la victoire du joueur : affiche le panel de victoire, calcule et distribue les gains,
+    /// et quitte la room après un délai
+
     public void Win() {
         if (trigger) return;
         trigger = true;
@@ -36,6 +40,10 @@ public class WinLoseCondition : MonoBehaviour
         PhotonNetwork.LeaveRoom();
     }
 
+
+    /// Met à jour la monnaie du joueur dans PlayFab en ajoutant le montant spécifié
+
+    /// <param name="amount">Montant à ajouter à la monnaie actuelle du joueur</param>
     private void UpdatePlayerCurrency(int amount) {
         PlayFabClientAPI.GetUserData(new GetUserDataRequest(), result =>
         {
@@ -69,11 +77,17 @@ public class WinLoseCondition : MonoBehaviour
         });
     }
 
+
+    /// Coroutine qui ajoute un délai de 2 secondes après la victoire
+
     private IEnumerator WinRoutine() {
         
         yield return new WaitForSeconds(2f);
         
     }
+
+
+    /// Gère la défaite du joueur : quitte la room et affiche le panel de défaite
 
     public void Lose() {
         if (trigger) return;
@@ -82,6 +96,8 @@ public class WinLoseCondition : MonoBehaviour
         LosePanel.SetActive(true);
     }
 
+
+    /// Retourne au menu principal du jeu
     public void Back() {
         PhotonNetwork.LoadLevel("Menu");
     }
