@@ -167,6 +167,9 @@ ScriptsOnlyBuild:
     fullTypeName: RoomCreationManager
     methodName: PrivateButton
   - assembly: Assembly-CSharp
+    fullTypeName: RoomDisplayManager
+    methodName: JoinPrivateRoom
+  - assembly: Assembly-CSharp
     fullTypeName: RoomCreationManager
     methodName: MinusButton
   - assembly: Assembly-CSharp
@@ -1453,7 +1456,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: 43ad678941aadac799ddc51c94149036
+      Hash: bf26644c4dd619947daaeba4a9d7f40d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RoomDisplayManager

@@ -14,6 +14,12 @@ public class RoomDisplayManager : MonoBehaviourPunCallbacks
     public float TimeUpdate_ = 5f;
     float NextUpdateTime_;
 
+    public Text PrivateRoomName_;
+
+    public void JoinPrivateRoom()
+    {
+        PhotonNetwork.JoinRoom(PrivateRoomName_.text);
+    }
 
     public void JoinRoom(string RoomName)
     {
